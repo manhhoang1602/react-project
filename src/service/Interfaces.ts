@@ -4,5 +4,13 @@ export interface IColumn {
   key: string;
   render: (value: any, row?: any, index?: any) => any;
   width?: number;
-  align?: "center" | "left" | "right";
+  align?: 'center' | 'left' | 'right';
+}
+
+export interface IMetaData {
+  current: number;
+  total: number;
+  pageSize: number;
+  showSizeChanger: boolean;
+  onChange: (page: number) => any;
 }

@@ -7,7 +7,7 @@ class AppServices {
   static history?: IHistory;
 
   static scrollToTop() {
-    window.scroll({ top: 0, behavior: "smooth" });
+    window.scroll({ top: 0, behavior: 'smooth' });
   }
 }
 

@@ -1,30 +1,28 @@
-import React, { Component } from "react";
-import { DatePicker } from "antd";
-import moment from "moment";
+import React, { Component } from 'react';
+import { DatePicker } from 'antd';
+import moment from 'moment';
 
 interface IProps {
   placeholder?: [string, string];
   format?: [string, string];
   inputReadOnly?: boolean;
-  onCalendarChange?: (date: any, formatString: [string, string]) => any
+  onCalendarChange?: (date: any, formatString: [string, string]) => any;
 }
 
-interface IState {
-
-}
+interface IState {}
 
 class RangePickerComponent extends Component<IProps, IState> {
+  static placeholder: [string, string] = ['Từ ngày', 'Tới ngày'];
+  static formatDate: [string, string] = ['DD/MM/YYYY', 'DD/MM/YYYY'];
+  static formatTime: [string, string] = ['hh:mm DD/MM/YYYY', 'hh:mm DD/MM/YYYY'];
+
   constructor(props: IProps) {
     super(props);
     this.state = {};
   }
 
-  static placeholder: [string, string] = ["Từ ngày", "Tới ngày"];
-  static formatDate: [string, string] = ["DD/MM/YYYY", "DD/MM/YYYY"];
-  static formatTime: [string, string] = ["hh:mm DD/MM/YYYY", "hh:mm DD/MM/YYYY"];
-
   static disabledDate(current: any) {
-    return current && current > moment().endOf("day");
+    return current && current > moment().endOf('day');
   }
 
   render() {

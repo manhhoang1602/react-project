@@ -1,5 +1,5 @@
-import Axios from "axios";
-import humps from "humps";
+import Axios from 'axios';
+import humps from 'humps';
 
 export interface IApiResponse<T> {
   status: number;
@@ -17,18 +17,18 @@ export interface IMetadata {
 const TOKEN_NAME: string = process.env.REACT_APP_TOKEN_NAME as string;
 const baseUrl: string = process.env.REACT_APP_BASE_URL as string;
 
-const getToken = (): string | null => localStorage.getItem("token");
+const getToken = (): string | null => localStorage.getItem('token');
 
 // METHODS CALL API
 export const apiCall = async (
   url: string,
-  method: "GET" | "PUT" | "POST" | "DELETE",
+  method: 'GET' | 'PUT' | 'POST' | 'DELETE',
   data: { [key: string]: any } | undefined,
-  isToken: boolean,
+  isToken: boolean
 ): Promise<IApiResponse<any>> => {
   const headers: { [key: string]: string } = {};
-  headers["Content-Type"] = "application/json";
-  if (isToken) headers[TOKEN_NAME] = getToken() || "";
+  headers['Content-Type'] = 'application/json';
+  if (isToken) headers[TOKEN_NAME] = getToken() || '';
 
   return new Promise<any>((resolve) => {
     Axios({
@@ -41,7 +41,7 @@ export const apiCall = async (
         if (next.data.code === 403) {
           // openNotification("ERROR", next.data.message);
           setTimeout(() => {
-            window.location.href = "/login";
+            window.location.href = '/login';
           }, 1500);
         }
         resolve({
@@ -65,18 +65,22 @@ export const apiCall = async (
   });
 };
 
-export const getRequest = async (url: string, isToken: boolean = true, isLogError: boolean = false): Promise<IApiResponse<any>> => {
+export const getRequest = async (
+  url: string,
+  isToken: boolean = true,
+  isLogError: boolean = false
+): Promise<IApiResponse<any>> => {
   const headers: { [key: string]: string } = {};
-  headers["Content-Type"] = "application/json";
+  headers['Content-Type'] = 'application/json';
 
-  if (isToken) headers[TOKEN_NAME] = getToken() || "";
+  if (isToken) headers[TOKEN_NAME] = getToken() || '';
 
   return new Promise<any>((resolve) => {
     Axios.get(baseUrl + url, isToken ? { headers: headers } : undefined)
       .then((next) => {
         if (next.data.code === 403) {
           setTimeout(() => {
-            window.location.href = "/login";
+            window.location.href = '/login';
           }, 2000);
         }
         resolve({
@@ -104,23 +108,23 @@ export const getRequest = async (url: string, isToken: boolean = true, isLogErro
 export const postRequest = (
   url: string,
   isToken: boolean = true,
-  data?: { [key: string]: any },
+  data?: { [key: string]: any }
 ): Promise<IApiResponse<any>> => {
-  return apiCall(url, "POST", data, isToken);
+  return apiCall(url, 'POST', data, isToken);
 };
 
 export const putRequest = (
   url: string,
   isToken: boolean = true,
-  data?: { [key: string]: any },
+  data?: { [key: string]: any }
 ): Promise<IApiResponse<any>> => {
-  return apiCall(url, "PUT", data, isToken);
+  return apiCall(url, 'PUT', data, isToken);
 };
 
 export const deleteRequest = (
   url: string,
   isToken: boolean = true,
-  data?: { [key: string]: any },
+  data?: { [key: string]: any }
 ): Promise<IApiResponse<any>> => {
-  return apiCall(url, "DELETE", data, isToken);
+  return apiCall(url, 'DELETE', data, isToken);
 };

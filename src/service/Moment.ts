@@ -1,20 +1,27 @@
-import moment from "moment";
+import moment from 'moment';
 
 export class Moment {
   static getDate(
     _date: number | string,
-    _format: string | "DD/MM/YYYY" | "DD-MM-YYYY" | "hh:ss DD/MM/YYYY" | "HH:ss DD/MM/YYYY" | "hh:ss A DD/MM/YYYY",
+    _format:
+      | string
+      | 'DD/MM/YYYY'
+      | 'DD-MM-YYYY'
+      | 'hh:mm DD/MM/YYYY'
+      | 'HH:mm DD/MM/YYYY'
+      | 'hh:mm A DD/MM/YYYY'
+      | 'HH:mm:ss DD-MM-YYYY'
   ): string {
-    return _format ? moment(_date).format(_format) : "___";
+    return _format ? moment(_date).format(_format) : '___';
   }
 
   static getDateIncrementOrDecrement(
-    _type: "INCREMENT" | "DECREMENT",
+    _type: 'INCREMENT' | 'DECREMENT',
     _date: string | number,
-    _numDay: number,
+    _numDay: number
   ): number {
     const date = new Date(_date);
-    if (_type === "INCREMENT") {
+    if (_type === 'INCREMENT') {
       date.setDate(date.getDate() + _numDay);
     } else {
       date.setDate(date.getDate() - _numDay);
@@ -28,7 +35,7 @@ export class Moment {
     seconds = seconds % 3600;
     let minutes = parseInt((seconds / 60).toString());
     seconds = Math.round(seconds % 60);
-    console.log(hours + ":" + minutes + ":" + seconds);
-    return hours + ":" + minutes + ":" + seconds;
+    console.log(hours + ':' + minutes + ':' + seconds);
+    return hours + ':' + minutes + ':' + seconds;
   }
 }

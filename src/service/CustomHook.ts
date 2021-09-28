@@ -1,5 +1,5 @@
 // CUSTOM HOOK
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 export const usePrev = (value: any) => {
   const ref = useRef<any>();
