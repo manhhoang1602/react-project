@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
+import { Config } from '../../service/Config';
 
 interface ISingleMenu {
   key: string;
@@ -34,9 +35,9 @@ interface IDataMenu {
   item: ISingleMenu | ISubMenu | IGroupMenu;
 }
 
-export const pathMenu = () => {
+export const pathMenuAdmin = () => {
   return {
-    home: '/',
+    dashboard: '/ad-dashboard',
     productCate: '/',
     product: '/',
     customer: '/',
@@ -50,12 +51,18 @@ export const pathMenu = () => {
   };
 };
 
-const dataMenu: IDataMenu[] = [
+export const pathMenuEnterprise = () => {
+  return {
+    dashboard: Config.routerEnterprise.dashboard,
+  };
+};
+
+export const dataMenuAdmin: IDataMenu[] = [
   {
     type: 'SINGLE_MENU',
     item: {
       key: '001',
-      path: pathMenu().home,
+      path: pathMenuAdmin().dashboard,
       value: 'Tổng Quan',
       icon: <i className="far fa-tachometer-alt" />,
     } as ISingleMenu,
@@ -64,7 +71,7 @@ const dataMenu: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '002',
-      path: pathMenu().productCate,
+      path: pathMenuAdmin().productCate,
       value: `Danh mục sản phẩm`,
       icon: <i className="fas fa-bars" />,
     } as ISingleMenu,
@@ -73,7 +80,7 @@ const dataMenu: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '004',
-      path: pathMenu().product,
+      path: pathMenuAdmin().product,
       value: 'Sản phẩm',
       icon: <i className="fas fa-box-open" />,
     } as ISingleMenu,
@@ -82,7 +89,7 @@ const dataMenu: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '005',
-      path: pathMenu().customer,
+      path: pathMenuAdmin().customer,
       value: 'Khách hàng',
       icon: <i className="fas fa-users" />,
     } as ISingleMenu,
@@ -91,7 +98,7 @@ const dataMenu: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '006',
-      path: pathMenu().order,
+      path: pathMenuAdmin().order,
       value: 'Đơn hàng',
       icon: <i className="fas fa-cart-arrow-down" />,
     } as ISingleMenu,
@@ -100,7 +107,7 @@ const dataMenu: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '007',
-      path: pathMenu().liveStream,
+      path: pathMenuAdmin().liveStream,
       value: 'Live stream',
       icon: <i className="fas fa-video" />,
     } as ISingleMenu,
@@ -109,7 +116,7 @@ const dataMenu: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '008',
-      path: pathMenu().chat,
+      path: pathMenuAdmin().chat,
       value: 'Chat',
       icon: <i className="fas fa-comments" />,
     } as ISingleMenu,
@@ -118,7 +125,7 @@ const dataMenu: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '009',
-      path: pathMenu().notification,
+      path: pathMenuAdmin().notification,
       value: 'Thêm thông báo',
       icon: <i className="fas fa-bell" />,
     } as ISingleMenu,
@@ -132,12 +139,12 @@ const dataMenu: IDataMenu[] = [
       listChild: [
         {
           key: '010_01',
-          path: pathMenu().reportSale,
+          path: pathMenuAdmin().reportSale,
           value: 'Báo cáo bán hàng',
         },
         {
           key: '010_02',
-          path: pathMenu().reportLiveStream,
+          path: pathMenuAdmin().reportLiveStream,
           value: 'Báo cáo live stream',
         },
       ],
@@ -147,14 +154,26 @@ const dataMenu: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '011',
-      path: pathMenu().account,
+      path: pathMenuAdmin().account,
       value: 'Tài khoản',
       icon: <i className="fas fa-user-circle" />,
     } as ISingleMenu,
   },
 ];
 
-const MenuComponent: React.FC<any> = () => {
+const dataMenuEnterPrise: IDataMenu[] = [
+  {
+    type: 'SINGLE_MENU',
+    item: {
+      key: '001',
+      path: pathMenuEnterprise().dashboard,
+      value: 'Tổng Quan',
+      icon: <i className="far fa-tachometer-alt" />,
+    } as ISingleMenu,
+  },
+];
+
+const MenuComponent: React.FC<{ data: IDataMenu[] }> = ({ data }) => {
   const openKey = (dataMenu: IDataMenu[]): { openKey: string; key: string } => {
     const { pathname } = window.location;
     let result: { openKey: string; key: string } = { openKey: '', key: '' };
@@ -230,10 +249,10 @@ const MenuComponent: React.FC<any> = () => {
       <Menu
         theme="light"
         mode="inline"
-        defaultSelectedKeys={[openKey(dataMenu).key]}
-        defaultOpenKeys={[openKey(dataMenu).openKey]}
+        defaultSelectedKeys={[openKey(data).key]}
+        defaultOpenKeys={[openKey(data).openKey]}
       >
-        {dataMenu.map((value) => renderMenuItem(value))}
+        {data.map((value) => renderMenuItem(value))}
       </Menu>
     </div>
   );

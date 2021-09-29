@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { Card, Col, Layout, Row, Table } from 'antd';
-import MenuComponent from '../menu/MenuComponent';
+import { Card, Col, Layout, Row } from 'antd';
+import MenuComponent, { dataMenuAdmin } from '../menu/MenuComponent';
 import RangePickerComponent from '../range-picker/RangePickerComponent';
 import UploadFileComponent from '../upload/UploadFileComponent';
 import { Notification } from '../notification/Notification';
+import ExportCsv, { dataExport } from '../export-excel/ExportCSV';
+import TableComponent from '../table/TableComponent';
+import LineChart, { dataLineChart } from '../chart/LineChart';
+import BarChart, { dataBarChart } from '../chart/BarChart';
+import DoughnutAndPieChart from '../chart/DoughnutAndPieChart';
+import Dashboard from '../../modules/dashboard/Dashboard';
 
 const { Header, Content, Sider } = Layout;
 
@@ -55,7 +61,7 @@ export default class LayoutComponent extends Component<IPropsLayoutComponent, IS
         <Layout>
           <HeaderComponent toggle={() => this.setState({ collapsed: !this.state.collapsed })} />
           <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ marginTop: 69 }}>
-            <MenuComponent />
+            <MenuComponent data={dataMenuAdmin} />
           </Sider>
 
           <Layout className="site-layout">
@@ -69,36 +75,7 @@ export default class LayoutComponent extends Component<IPropsLayoutComponent, IS
                 marginTop: 60,
               }}
             >
-              <Row gutter={16}>
-                <Col md={6}>
-                  <Card title={'Range picker component'} bordered={false}>
-                    <RangePickerComponent />
-                  </Card>
-                </Col>
-                <Col md={6}>
-                  <Card title={'Upload component'} bordered={false}>
-                    <UploadFileComponent
-                      type={'picture-card'}
-                      limit={1}
-                      name={'image'}
-                      path={'http://apidev.tpmart.winds.vn/api/v1/files/uploadFile/1'}
-                      size={3}
-                      isDisplayImgError={true}
-                      logger={(data) => {}}
-                    />
-                  </Card>
-                </Col>
-                <Col md={6}>
-                  <Card title={'Notification component'} bordered={false}>
-                    <button onClick={() => Notification.PushNotification('SUCCESS', 'Test push notyfication')}>
-                      Push Notification
-                    </button>
-                    <button onClick={() => Notification.PushMassage('SUCCESS', 'Test push notyfication')}>
-                      Push Message
-                    </button>
-                  </Card>
-                </Col>
-              </Row>
+              <Dashboard />
             </Content>
           </Layout>
         </Layout>
