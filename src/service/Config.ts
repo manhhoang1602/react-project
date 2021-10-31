@@ -1,9 +1,26 @@
+import Login from '../modules/login/Login';
+import Dashboard from '../modules/dashboard/Dashboard';
+
 export class Config {
   static limit: number = 24;
-  static routerAdmin = {
-    dashboard: '/dashboard',
-  };
-  static routerEnterprise = {
-    dashboard: '/dashboard',
-  };
+  static routerAdmin = [
+    {
+      path: `/dashboard`,
+      component: Dashboard,
+    },
+    {
+      path: '/login',
+      component: Login,
+    },
+  ];
+  static routerEnterprise = [
+    {
+      path: `/dashboard`,
+      component: Dashboard,
+    },
+    {
+      path: '/login',
+      component: Login,
+    },
+  ];
 }

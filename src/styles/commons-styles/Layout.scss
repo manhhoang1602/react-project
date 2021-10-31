@@ -1,0 +1,54 @@
+@import "BoxShadow";
+@import "./src/styles/Color";
+
+.layout {
+  // override css ant
+  .ant-layout {
+    background-color: $background-color !important;
+
+    .ant-layout-sider-children {
+      @include box-shadows-01;
+    }
+  }
+
+  // header
+  .site-layout-background {
+    padding: 0 !important;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+    @include box-shadows-53;
+
+    .wrapper-content-header {
+      display: flex;
+
+      .brand-component {
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .option-top-component {
+        flex-grow: 1;
+        padding-right: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+  }
+
+  &__site-layout {
+    // content
+    &__site-layout-background {
+      padding: 0 4px;
+      min-height: calc(100vh - 90px) !important;
+      margin-top: 70px;
+      @include box-shadows-53;
+    }
+  }
+}

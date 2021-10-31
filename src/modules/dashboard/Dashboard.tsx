@@ -15,7 +15,8 @@ const Dashboard = () => {
       <Row gutter={16}>
         <Col md={6}>
           <Card title={'Range picker component'} bordered={false}>
-            <RangePickerComponent />
+            <RangePickerComponent disable={'PAST'}
+                                  onCalendarChange={(date, formatString) => console.log(formatString)} />
           </Card>
         </Col>
         <Col md={6}>
@@ -24,10 +25,11 @@ const Dashboard = () => {
               type={'picture-card'}
               limit={1}
               name={'image'}
-              path={'http://apidev.tpmart.winds.vn/api/v1/files/uploadFile/1'}
+              path={'https://apidev.tpmart.winds.vn/api/v1/files/uploadFile/1'}
               size={3}
               isDisplayImgError={true}
-              logger={(data) => {}}
+              logger={(data) => {console.log('run')
+              }}
             />
           </Card>
         </Col>

@@ -1,0 +1,69 @@
+@import "./src/styles/commons-styles/BoxShadow";
+
+.LoginPage01 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  width: 100vw;
+  color: white;
+
+  background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("./assets/img/bg-01.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  &__form {
+    min-width: 300px;
+    width: 30%;
+    height: 90vh;
+    padding: 50px;
+    @include box-shadows-04;
+
+    border-radius: 8px;
+    background-image: -webkit-linear-gradient(top, rgb(117, 121, 255), rgb(178, 36, 239));
+
+    &__wrapper {
+      &__logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        div {
+          height: 120px;
+          width: 120px;
+          border-radius: 50%;
+          background-color: white;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          i {
+            color: #312c2c;
+            font-size: 54px;
+          }
+        }
+      }
+
+      input {
+        //outline: none;
+        //border: none;
+        //width: 100%;
+
+        //color: white;
+        background-color: transparent;
+        font-size: 16px;
+      }
+
+      &__body {
+
+      }
+    }
+  }
+
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { Config } from '../../service/Config';
+import Icon from '../icon/Icon';
 
 interface ISingleMenu {
   key: string;
@@ -35,99 +36,77 @@ interface IDataMenu {
   item: ISingleMenu | ISubMenu | IGroupMenu;
 }
 
-export const pathMenuAdmin = () => {
-  return {
-    dashboard: '/ad-dashboard',
-    productCate: '/',
-    product: '/',
-    customer: '/',
-    order: '/',
-    liveStream: '/',
-    chat: '/',
-    notification: '/',
-    reportSale: '/',
-    reportLiveStream: '/',
-    account: '/',
-  };
-};
-
-export const pathMenuEnterprise = () => {
-  return {
-    dashboard: Config.routerEnterprise.dashboard,
-  };
-};
-
 export const dataMenuAdmin: IDataMenu[] = [
   {
     type: 'SINGLE_MENU',
     item: {
       key: '001',
-      path: pathMenuAdmin().dashboard,
+      path: Config.routerAdmin[0].path,
       value: 'Tổng Quan',
-      icon: <i className="far fa-tachometer-alt" />,
+      icon: Icon.MENU_ICON.DASHBOARD,
     } as ISingleMenu,
   },
   {
     type: 'SINGLE_MENU',
     item: {
       key: '002',
-      path: pathMenuAdmin().productCate,
+      path: '',
       value: `Danh mục sản phẩm`,
-      icon: <i className="fas fa-bars" />,
+      icon: Icon.MENU_ICON.CATE,
     } as ISingleMenu,
   },
   {
     type: 'SINGLE_MENU',
     item: {
       key: '004',
-      path: pathMenuAdmin().product,
+      path: '',
       value: 'Sản phẩm',
-      icon: <i className="fas fa-box-open" />,
+      icon: Icon.MENU_ICON.PRODUCT,
     } as ISingleMenu,
   },
   {
     type: 'SINGLE_MENU',
     item: {
       key: '005',
-      path: pathMenuAdmin().customer,
+      path: '',
       value: 'Khách hàng',
-      icon: <i className="fas fa-users" />,
+      icon: Icon.MENU_ICON.CUSTOMER,
     } as ISingleMenu,
   },
   {
     type: 'SINGLE_MENU',
     item: {
       key: '006',
-      path: pathMenuAdmin().order,
+      path: '',
       value: 'Đơn hàng',
-      icon: <i className="fas fa-cart-arrow-down" />,
+      icon: Icon.MENU_ICON.ORDER,
     } as ISingleMenu,
   },
   {
     type: 'SINGLE_MENU',
     item: {
       key: '007',
-      path: pathMenuAdmin().liveStream,
+      path: '',
       value: 'Live stream',
-      icon: <i className="fas fa-video" />,
+      icon: Icon.MENU_ICON.LIVE_STREAM,
     } as ISingleMenu,
   },
   {
     type: 'SINGLE_MENU',
     item: {
       key: '008',
-      path: pathMenuAdmin().chat,
+      path: '',
       value: 'Chat',
-      icon: <i className="fas fa-comments" />,
+      icon: Icon.MENU_ICON.CHAT,
     } as ISingleMenu,
   },
   {
     type: 'SINGLE_MENU',
     item: {
       key: '009',
-      path: pathMenuAdmin().notification,
+      path: '',
       value: 'Thêm thông báo',
-      icon: <i className="fas fa-bell" />,
+      icon: Icon.MENU_ICON.NOTIFICATION,
     } as ISingleMenu,
   },
   {
@@ -135,16 +114,16 @@ export const dataMenuAdmin: IDataMenu[] = [
     item: {
       key: '010',
       value: 'Báo cáo',
-      icon: <i className="fas fa-chart-area" />,
+      icon: Icon.MENU_ICON.REPOST,
       listChild: [
         {
           key: '010_01',
-          path: pathMenuAdmin().reportSale,
+          path: '',
           value: 'Báo cáo bán hàng',
         },
         {
           key: '010_02',
-          path: pathMenuAdmin().reportLiveStream,
+          path: '',
           value: 'Báo cáo live stream',
         },
       ],
@@ -154,9 +133,9 @@ export const dataMenuAdmin: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '011',
-      path: pathMenuAdmin().account,
+      path: '',
       value: 'Tài khoản',
-      icon: <i className="fas fa-user-circle" />,
+      icon: Icon.MENU_ICON.ACCOUNT,
     } as ISingleMenu,
   },
 ];
@@ -166,9 +145,9 @@ const dataMenuEnterPrise: IDataMenu[] = [
     type: 'SINGLE_MENU',
     item: {
       key: '001',
-      path: pathMenuEnterprise().dashboard,
+      path: '',
       value: 'Tổng Quan',
-      icon: <i className="far fa-tachometer-alt" />,
+      icon: Icon.MENU_ICON.DASHBOARD,
     } as ISingleMenu,
   },
 ];
@@ -247,8 +226,8 @@ const MenuComponent: React.FC<{ data: IDataMenu[] }> = ({ data }) => {
   return (
     <div className={'menu'}>
       <Menu
-        theme="light"
-        mode="inline"
+        theme='light'
+        mode='inline'
         defaultSelectedKeys={[openKey(data).key]}
         defaultOpenKeys={[openKey(data).openKey]}
       >

@@ -16,7 +16,7 @@
   },
   "rules": {
     "prettier/prettier": [
-      "error",
+      0,
       {
         "arrowParens": "always",
         "bracketSpacing": true,

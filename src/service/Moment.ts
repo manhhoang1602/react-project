@@ -38,4 +38,24 @@ export class Moment {
     console.log(hours + ':' + minutes + ':' + seconds);
     return hours + ':' + minutes + ':' + seconds;
   }
+  
+  public static getPeriod(
+    startTime: number | string,
+    endTime: number | string,
+    type: 'hour' | 'minute' | 'second'
+  ): number {
+    let rs: number = 0
+    const start = moment(startTime)
+    const end = moment(endTime)
+    let ss: number = moment(endTime).unix() - moment(startTime).unix()
+
+    if (type === 'hour') {
+      return ss / 3600
+    } else if (type === 'minute') {
+      return ss / 60
+    } else {
+      return ss
+    }
+    return rs
+  }
 }
